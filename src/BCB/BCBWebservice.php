@@ -44,6 +44,10 @@ class BCBWebservice {
     return $result;
   }
 
+  public function getFunctions() {
+    return $this->soap->__getFunctions();
+  }
+
   public static function getInstance() {
     if (NULL === self::$instance) {
       self::$instance = new BCBWebservice(self::WSDL_URL);

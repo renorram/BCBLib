@@ -9,4 +9,5 @@ include_once '../vendor/autoload.php';
 echo "<pre>";
 $bcb = \BCB\BCBWebservice::getInstance();
 
-print_r($bcb->getUltimoValorVO(1));
+print_r($bcb->getFunctions());
+//print_r($bcb->getUltimoValorVO(1));

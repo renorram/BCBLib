@@ -6,5 +6,7 @@
     "psr-4": {
       "BCB\\": "src/BCB/"
     }
+  },
+  "require": {
   }
 }

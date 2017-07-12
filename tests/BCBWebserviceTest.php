@@ -21,7 +21,6 @@ class BCBWebserviceTest extends PHPUnit_Framework_TestCase {
     $soap = BCBWebservice::getInstance();
 
     $this->assertInstanceOf('stdClass', $soap->getUltimoValorVO(1));
-//            print_r($soap->getUltimoValorVO(1));
 
   }
 
@@ -34,6 +33,23 @@ class BCBWebserviceTest extends PHPUnit_Framework_TestCase {
 
     $this->assertStringStartsWith('<?xml version=\'1.0\' encoding=\'ISO-8859-1\'?>', $value);
 
-    //    print_r($value );
+  }
+
+  public function testGetValoresSeriesVO() {
+    $soap = BCBWebservice::getInstance();
+
+    $this->assertInternalType('array', $soap->getValoresSeriesVO([1], '10/02/2016', date('d/m/Y')));
+
+  }
+
+  public function testGetValoresSeriesXML() {
+    $soap = BCBWebservice::getInstance();
+
+    $value = $soap->getValoresSeriesXML([1], '10/02/2016', date('d/m/Y'));
+
+    $this->assertInternalType('string', $value);
+
+    $this->assertStringStartsWith('<?xml version=\'1.0\' encoding=\'ISO-8859-1\'?>', $value);
+
   }
 }

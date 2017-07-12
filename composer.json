@@ -8,5 +8,6 @@
     }
   },
   "require": {
+    "symfony/debug": "^3.3"
   }
 }

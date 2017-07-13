@@ -6,8 +6,10 @@
  * Time: 19:13
  */
 
-namespace BCB\ExternalSector\ExchangeRates;
+namespace BCB\Rates\ExternalSector\ExchangeRates;
 
+
+use BCB\Rates\AbstractRate;
 
 class AdministeredOrFree extends AbstractRate {
 

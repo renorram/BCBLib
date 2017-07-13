@@ -8,26 +8,16 @@
 
 namespace BCB;
 
-
-use Symfony\Component\Debug\Debug;
-
-class BCBWebservice {
+class Webservice {
 
   /** @var \SoapClient $soap */
   private $soap;
-
-  protected $debug;
 
   const WSDL_URL = 'https://www3.bcb.gov.br/sgspub/JSP/sgsgeral/FachadaWSSGS.wsdl?WSDL';
 
   private static $instance;
 
-  public function __construct($wsdl, $options = [], $debug = FALSE) {
-    $this->debug = $debug;
-    // enable or not debug mode
-    if ($this->debug) {
-      Debug::enable();
-    }
+  public function __construct($wsdl, $options = []) {
 
     try {
 
@@ -36,9 +26,7 @@ class BCBWebservice {
       $this->soap = new \SoapClient($wsdl, $options);
 
     } catch (\Exception $exception) {
-      if ($this->debug) {
-        throw $exception;
-      }
+      throw $exception;
     }
   }
 
@@ -67,62 +55,40 @@ class BCBWebservice {
    *
    * @param array $options
    *
-   * @return \BCB\BCBWebservice
+   * @return \BCB\Webservice
    */
   public static function getInstance($options = []) {
     if (NULL === self::$instance) {
-      $debug = FALSE;
-      if (isset($options['debug'])) {
-        $debug = $options['debug'];
-        unset($options['debug']);
-      }
-
-      self::$instance = new BCBWebservice(self::WSDL_URL, $options, $debug);
-
+      self::$instance = new Webservice(self::WSDL_URL, $options);
     }
 
     return self::$instance;
   }
 
-  public function getValoresSeriesVO($codigosSeries, $dataInicio, $dataFim) {
+  public function getValoresSeriesVO($codigosSeries, \DateTime $dataInicio, \DateTime $dataFim) {
     if (!is_array($codigosSeries) || (is_array($codigosSeries) && empty($codigosSeries))) {
       throw new \InvalidArgumentException('Parameter codigoSerie is not an array or is empty.');
     }
 
-    if (!is_string($dataFim)) {
-      throw new \InvalidArgumentException('Paremeter dataInicio isn\'t not a string');
-    }
-
-    if (!is_string($dataFim)) {
-      throw new \InvalidArgumentException('Paremeter dataFim isn\'t not a string');
-    }
 
     $data = [
       'codigosSeries' => $codigosSeries,
-      'dataInicio' => $dataInicio,
-      'dataFim' => $dataFim,
+      'dataInicio' => $dataInicio->format('d/m/Y'),
+      'dataFim' => $dataFim->format('d/m/Y'),
     ];
 
     return $this->request('getValoresSeriesVO', $data);
   }
 
-  public function getValoresSeriesXML($codigosSeries, $dataInicio, $dataFim) {
+  public function getValoresSeriesXML($codigosSeries, \DateTime $dataInicio, \DateTime $dataFim) {
     if (!is_array($codigosSeries) || (is_array($codigosSeries) && empty($codigosSeries))) {
       throw new \InvalidArgumentException('Parameter codigoSerie is not an array or is empty.');
     }
 
-    if (!is_string($dataFim)) {
-      throw new \InvalidArgumentException('Paremeter dataInicio isn\'t not a string');
-    }
-
-    if (!is_string($dataFim)) {
-      throw new \InvalidArgumentException('Paremeter dataFim isn\'t not a string');
-    }
-
     $data = [
       'codigosSeries' => $codigosSeries,
-      'dataInicio' => $dataInicio,
-      'dataFim' => $dataFim,
+      'dataInicio' => $dataInicio->format('d/m/Y'),
+      'dataFim' => $dataFim->format('d/m/Y'),
     ];
 
     return $this->request('getValoresSeriesXML', $data);

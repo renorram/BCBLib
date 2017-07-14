@@ -6,7 +6,7 @@ For now it just has a simple structure to consult the taxes rates available on t
 Unfortunately I had to use static data because the webservice doesn't provide any method to retrieve the available data.
 
 This is pretty much my first Open Source project, so any suggestions on code or code structure or anythig else you can talk to me on my twitter account @orenorram.
-#Dependencies
+# Dependencies
 
 Just the composer. https://getcomposer.org/
 

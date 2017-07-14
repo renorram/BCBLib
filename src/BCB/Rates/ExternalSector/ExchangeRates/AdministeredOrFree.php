@@ -13,6 +13,18 @@ use BCB\Rates\AbstractRate;
 
 class AdministeredOrFree extends AbstractRate {
 
+  public function getName() {
+    return 'Taxas Câmbio - Taxas Livres ou Administradas';
+  }
+
+  public function getData() {
+    return $this->data;
+  }
+
+  public function setData(array $data) {
+    $this->data = $data;
+  }
+
   /**
    * Base data for consulting
    * Data retrieved from Sistema de Series Temporais do Banco do Brasil on date: Wed, 12 Jul 17 19:21:55 -0300

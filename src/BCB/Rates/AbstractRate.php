@@ -11,24 +11,28 @@ namespace BCB\Rates;
 
 abstract class AbstractRate {
 
-  private $data = [];
+  /**
+   * Return the taxe name
+   * @return mixed
+   */
+  public abstract function getName();
 
   /**
    * @return array
    */
-  public function getData() {
-    return $this->data;
-  }
+  public abstract function getData();
+  public abstract function setData(array $data);
+
 
   /**
    * @param array $data
    *
    * @throws \Exception
    */
-  public function setData(array $data) {
+  public function setNewData(array $data) {
     try {
       $this->validateData($data);
-      $this->data = $data;
+      $this->setData($data);
     } catch (\Exception $exception) {
       throw $exception;
     }

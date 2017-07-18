@@ -67,6 +67,24 @@ class Retriever {
         'short_name' => 'rates_administered_free',
         'class_path' => 'BCB\\Rates\\ExternalSector\\ExchangeRates\\AdministeredOrFree',
       ],
+      [
+        'name' => 'Taxas de juros',
+        'description' => 'Taxas de juros',
+        'short_name' => 'financial_capital_interest_rates',
+        'class_path' => 'BCB\\Rates\\FinancialCapitalMarkets\\FinancialMarketIndicators\\InterestRates',
+      ],
+      [
+        'name' => 'Indicadores de Atividade Econômica',
+        'description' => 'Indicadores de Atividade Econômica como IPCA e IGP',
+        'short_name' => 'economic_activity_prices_consumer',
+        'class_path' => 'BCB\\Rates\\EconomicActivity\\Prices\\ConsumerPricesBroads',
+      ],
+      [
+        'name' => 'Indicadores de Atividade Econômica',
+        'description' => 'Indicadores de Atividade Econômica como IPCA e IGP',
+        'short_name' => 'economic_activity_prices_general',
+        'class_path' => 'BCB\\Rates\\EconomicActivity\\Prices\\GeneralPriceIndexMarket',
+      ],
     ];
   }
 
